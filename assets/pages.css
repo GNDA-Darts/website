@@ -1,0 +1,15 @@
+/* Shared styles for the content pages (Home, Venues, Music City Classic, and pages to come).
+   The Stats page has its own styles and does not load this file. */
+a{color:var(--link)}
+.eyebrow{font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:0}
+.page-title{font:700 clamp(40px,7vw,60px)/.95 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:8px 0 0;text-wrap:balance}
+section{min-width:0}
+h2{font:700 26px/1.05 var(--display);text-transform:uppercase;letter-spacing:.02em;margin:0 0 10px;text-wrap:balance}
+h3{font:700 19px/1.15 var(--display);text-transform:uppercase;letter-spacing:.05em;margin:28px 0 10px;color:var(--ink2);text-wrap:balance}
+.lede{color:var(--ink2);font-size:16px;margin:10px 0 0;max-width:60ch}
+.empty{color:var(--muted);font-size:14px;padding:12px 0;margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:8px;font:700 17px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.btn.ghost{border:1px solid var(--rule);color:var(--ink);background:var(--surface)}
+.btn:hover{filter:brightness(1.06)}
+.social{display:block;flex:none}
+

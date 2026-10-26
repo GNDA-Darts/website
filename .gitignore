@@ -1,0 +1,15 @@
+# Local working files: kept off the website
+*.csv
+*.py
+*.gs
+*.md
+!README.md
+raw/
+pipeline/
+reports/
+
+# Mac / editor clutter
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/

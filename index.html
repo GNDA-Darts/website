@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Greater Nashville Darting Association</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta name="description" content="Steel-tip darts in Nashville: weekly blind draws, league play and the Music City Classic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/pages.css">
+<style>
+/* Home layout: hero band (logo + who we are), then Events (weekly blind draws + dated events) beside Announcements.
+   Phones: one column, announcements first. No announcements: events take the full width. */
+.hero{padding-block:36px 28px}
+.hero .wrap{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.logo{width:184px;flex:none}
+.logo img{display:block;width:100%;height:auto}
+h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mission{font-size:clamp(16px,1.9vw,18px);line-height:1.55;color:var(--ink);max-width:60ch;margin:10px 0 0;text-wrap:pretty}
+.mission p{margin:0}
+.mission p+p{margin-top:10px}
+
+main .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;padding-block:8px 56px;align-items:start}
+main .wrap.solo{grid-template-columns:minmax(0,1fr);max-width:760px}
+
+/* Weekly blind draws: a compact box at the top of Events */
+.draws{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px 14px;margin:0 0 14px}
+.draws h3{margin:0;font-size:16px;color:var(--ink)}
+.draws .sub{margin:2px 0 6px;font-size:13px;color:var(--muted)}
+.draws ul{list-style:none;margin:0;padding:0}
+.draws li{display:grid;grid-template-columns:6em minmax(0,1fr) auto;gap:2px 12px;padding:7px 0;border-top:1px solid var(--rule);align-items:baseline}
+.draws .day{font:700 16px/1.1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.draws .v{font-weight:600;font-size:15px;color:var(--ink)}
+.draws .v a{color:inherit;text-decoration-color:var(--rule);text-underline-offset:3px}
+.draws .t{font:700 16px/1.1 var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.draws .note{grid-column:2/4;font-size:13px;color:var(--ink2)}
+.tonight{display:inline-block;font:600 10px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--surface);background:var(--green);padding:3px 6px;border-radius:4px;vertical-align:2px;margin-left:6px}
+
+/* Announcements */
+.anns{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.ann{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+.ann h4{font:700 20px/1.1 var(--display);margin:0;letter-spacing:.01em;text-wrap:balance}
+.ann p{margin:6px 0 0;font-size:14px;color:var(--ink2)}
+.ann .go{display:inline-block;margin-top:8px;font-weight:600;font-size:14px;text-decoration:none}
+.ann .until{display:block;margin-top:8px;font-size:12px;color:var(--muted)}
+
+/* Dated events */
+.events{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.ev{display:grid;grid-template-columns:62px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px;scroll-margin-top:80px}
+.ev:target{border-color:var(--green);box-shadow:0 0 0 2px var(--green-soft)}
+.date{text-align:center;border-right:1px solid var(--rule);padding-right:12px}
+.date .m{display:block;font:600 13px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.date .d{display:block;font:700 34px/1 var(--display);font-variant-numeric:tabular-nums;margin-top:2px}
+.date .w{display:block;font:600 11px/1.2 var(--body);color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+.date.tba .d{font-size:22px;margin-top:6px}
+.ev h4{font:700 20px/1.1 var(--display);margin:0;letter-spacing:.01em;text-wrap:balance}
+.ev .info{font-size:13px;color:var(--muted);margin:3px 0 0}
+.ev p{margin:6px 0 0;font-size:14px;color:var(--ink2)}
+.ev .more{display:inline-block;margin-top:6px;font-weight:600;font-size:14px;text-decoration:none}
+.ev .more.soon{color:var(--muted);font-weight:500}
+.ev .links{display:flex;flex-wrap:wrap;gap:4px 18px}
+.ev .info a{color:inherit;text-decoration-color:var(--rule);text-underline-offset:3px}
+.ev .every{display:block;font:600 11px/1.2 var(--body);color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+.ev details{margin-top:8px}
+.ev summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--link);list-style:none;display:inline-flex;align-items:center;gap:6px}
+.ev summary::-webkit-details-marker{display:none}
+.ev summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+.ev details[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.ev details .body{margin-top:8px;padding-top:8px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink2)}
+.ev details .body p{margin:0 0 8px}
+.ev details .body ul{margin:0 0 8px;padding-left:18px}
+
+
+@media (max-width:820px){ main .wrap{grid-template-columns:minmax(0,1fr);gap:32px} #news{order:-1} }
+@media (max-width:560px){
+  .hero{padding-block:24px 20px}
+  .hero .wrap{grid-template-columns:minmax(0,1fr);gap:16px}
+  .logo{width:120px}
+  .draws li{gap:2px 10px}
+}
+</style>
+</head>
+<body>
+
+<script src="assets/site.js" data-root="" data-page="home"></script>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Greater Nashville Darting Association logo, established 1986" width="400" height="400">
+    </div>
+    <div>
+      <p class="eyebrow">Nashville steel-tip darts since 1986</p>
+      <h1>Greater Nashville Darting Association</h1>
+      <div class="mission" id="mission"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <section id="events" aria-labelledby="events-h">
+      <h2 id="events-h">Events</h2>
+      <div class="draws" id="draws-box">
+        <h3>Weekly blind draws</h3>
+        <p class="sub">Open to everyone, no team needed.</p>
+        <ul id="draws"></ul>
+      </div>
+      <ul class="events" id="dated"></ul>
+    </section>
+
+    <section id="news" aria-labelledby="news-h">
+      <h2 id="news-h">Announcements</h2>
+      <ul class="anns" id="anns"></ul>
+    </section>
+  </div>
+</main>
+
+
+<script src="data/venues.js"></script>
+<script src="data/home.js"></script>
+<script>
+(function(){
+  var C = window.GNDA_HOME || {mission:"",events:[],announcements:[]};
+  var V = window.GNDA_VENUES || {venues:[],blindDraws:[]};
+  var DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+  // Full web addresses, or pages in this site (no other link types)
+  function url(s){s=String(s||"").trim();return /^https?:\/\//i.test(s)||(s && !/^[a-z][a-z0-9+.-]*:/i.test(s))?s:""}
+
+  // Today's date and weekday in Nashville time, whatever the viewer's time zone.
+  var parts = new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",year:"numeric",month:"2-digit",day:"2-digit",weekday:"long"}).formatToParts(new Date());
+  var P = {}; parts.forEach(function(p){P[p.type]=p.value});
+  var today = P.year+"-"+P.month+"-"+P.day;
+  var todayIdx = DAYS.indexOf(P.weekday);
+
+  function ymd(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return m?{y:+m[1],m:+m[2],d:+m[3]}:null}
+  function weekday(s){var d=ymd(s);return d?DAYS[new Date(Date.UTC(d.y,d.m-1,d.d)).getUTCDay()]:""}
+  function longDate(s){var d=ymd(s);return d?MON[d.m-1]+" "+d.d+", "+d.y:""}
+
+  // Mission
+  var mission = [].concat(C.mission || []);
+  document.getElementById("mission").innerHTML = mission.map(function(p){return "<p>"+esc(p)+"</p>"}).join("");
+
+  // Venues, looked up by name for blind-draw addresses
+  var VENUES = V.venues||[], byName = {};
+  VENUES.forEach(function(v){byName[String(v.name).toLowerCase()]=v});
+  function mapLink(name,address){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((name?name+", ":"")+address)}
+
+  // Weekly blind draws: one line per venue and time, days combined ("Fri & Sat"), starting from today
+  var SHORT = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function ahead(day){return (DAYS.indexOf(day)-todayIdx+7)%7}
+  var groups = [], gByKey = {};
+  (V.blindDraws||[]).forEach(function(b){
+    if(DAYS.indexOf(b.day)<0) return;
+    var k = [String(b.venue).toLowerCase(), b.time, b.notes||""].join("|");
+    if(!gByKey[k]){ gByKey[k] = {venue:b.venue, time:b.time, notes:b.notes, days:[]}; groups.push(gByKey[k]); }
+    gByKey[k].days.push(b.day);
+  });
+  groups.forEach(function(g){
+    g.days.sort(function(a,b){return DAYS.indexOf(a)-DAYS.indexOf(b)});
+    g.next = Math.min.apply(null, g.days.map(ahead));
+  });
+  groups.sort(function(a,b){return a.next-b.next || String(a.time).localeCompare(String(b.time))});
+  document.getElementById("draws").innerHTML = groups.length ? groups.map(function(g){
+    var isToday = g.days.indexOf(DAYS[todayIdx])>=0;
+    var v = byName[String(g.venue).toLowerCase()] || {};
+    var name = v.address ? '<a href="'+mapLink(g.venue,v.address)+'" rel="noopener" title="'+esc(v.address)+'">'+esc(g.venue)+'</a>' : esc(g.venue);
+    return '<li>'+
+      '<span class="day" title="'+esc(g.days.join(", "))+'">'+esc(g.days.map(function(d){return SHORT[DAYS.indexOf(d)]}).join(" & "))+'</span>'+
+      '<span class="v">'+name+(isToday?'<span class="tonight">Tonight</span>':'')+'</span>'+
+      '<span class="t">'+esc(g.time)+'</span>'+
+      (g.notes?'<span class="note">'+esc(g.notes)+'</span>':'')+
+    '</li>';
+  }).join("") : '<li><span class="note">No weekly blind draws listed right now.</span></li>';
+  if(!groups.length) document.getElementById("draws-box").hidden = true;
+
+  // Announcements: shown from "from" (optional) through "until"; pinned first, then newest first
+  var anns = (C.announcements||[]).filter(function(a){
+    return a.title && (!a.from || a.from <= today) && (!a.until || a.until >= today);
+  }).map(function(a,i){a._i=i;return a}).sort(function(a,b){
+    return (b.pinned?1:0)-(a.pinned?1:0) || String(b.from||"").localeCompare(String(a.from||"")) || a._i-b._i;
+  });
+  if(anns.length){
+    document.getElementById("anns").innerHTML = anns.map(function(a){
+      var go = url(a.link) ? '<a class="go" href="'+esc(url(a.link))+'" rel="noopener">'+esc(a.linkText||"Learn more")+' →</a>' : "";
+      return '<li class="ann'+(a.pinned?' pinned':'')+'"><h4>'+esc(a.title)+'</h4>'+(a.text?'<p>'+esc(a.text)+'</p>':'')+go+'</li>';
+    }).join("");
+  } else {
+    document.getElementById("news").hidden = true;
+    document.querySelector("main .wrap").classList.add("solo");
+  }
+
+  // "More info" expansion: a list of paragraphs; a paragraph given as a list becomes bullets
+  function moreInfo(m){
+    if(!m || !m.length) return "";
+    var body = (typeof m==="string"?[m]:m).map(function(x){
+      return Array.isArray(x) ? '<ul>'+x.map(function(i){return '<li>'+esc(i)+'</li>'}).join("")+'</ul>' : '<p>'+esc(x)+'</p>';
+    }).join("");
+    return '<details><summary>More info</summary><div class="body">'+body+'</div></details>';
+  }
+
+  // Repeating events ("third Monday", "first Saturday", "last Wednesday"...): show the next one
+  var ORD = {first:1, second:2, third:3, fourth:4, last:-1};
+  function pad(n){return (n<10?"0":"")+n}
+  function nthWeekday(y, m, ord, wd){           // m is 1–12; returns YYYY-MM-DD
+    var d;
+    if(ord===-1){ var last=new Date(Date.UTC(y,m,0)); d=last.getUTCDate()-((last.getUTCDay()-wd+7)%7); }
+    else { var first=new Date(Date.UTC(y,m-1,1)).getUTCDay(); d=1+((wd-first+7)%7)+7*(ord-1); }
+    return y+"-"+pad(m)+"-"+pad(d);
+  }
+  function nextRepeat(rule){
+    var m=/^(first|second|third|fourth|last)\s+(sunday|monday|tuesday|wednesday|thursday|friday|saturday)$/i.exec(String(rule||"").trim());
+    if(!m) return "";
+    var ord=ORD[m[1].toLowerCase()], wd=DAYS.map(function(x){return x.toLowerCase()}).indexOf(m[2].toLowerCase());
+    var y=+P.year, mo=+P.month, d=nthWeekday(y,mo,ord,wd);
+    if(d<today){ mo++; if(mo>12){mo=1;y++;} d=nthWeekday(y,mo,ord,wd); }
+    return d;
+  }
+  (C.events||[]).forEach(function(e){ if(e.repeat){ e.date = nextRepeat(e.repeat); } });
+
+  // Dated events: hide once their last day has passed; soonest first
+  var evs = (C.events||[]).filter(function(e){return (e.end||e.date||"9999") >= today})
+    .sort(function(a,b){return String(a.date).localeCompare(String(b.date))});
+  document.getElementById("dated").innerHTML = evs.length ? evs.map(function(e){
+    var d = ymd(e.date), dateBox;
+    if(e.when || !d){
+      dateBox = '<div class="date tba"><span class="m">'+(d?MON[d.m-1]:"")+'</span><span class="d">TBA</span></div>';
+    } else {
+      var span = e.end && e.end!==e.date ? (function(){var z=ymd(e.end);return z&&z.m===d.m? d.d+"–"+z.d : ""})() : "";
+      dateBox = '<div class="date"><span class="m">'+MON[d.m-1]+'</span><span class="d">'+(span||d.d)+'</span><span class="w">'+(span?"":weekday(e.date).slice(0,3))+'</span></div>';
+    }
+    var when = e.when || (longDate(e.date)+(e.end&&e.end!==e.date?" – "+longDate(e.end):""));
+    var pv = byName[String(e.place||"").toLowerCase()];
+    var place = pv && pv.address ? '<a href="'+mapLink(e.place,pv.address)+'" rel="noopener" title="'+esc(pv.address)+'">'+esc(e.place)+'</a>' : esc(e.place);
+    var info = [esc(when), esc(e.time), e.place && e.place!=="TBA" ? place : (e.place ? "Venue TBA" : "")].filter(Boolean).join(" · ");
+    var link = url(e.link) ? '<a class="more" href="'+esc(url(e.link))+'" rel="noopener">'+esc(e.linkText||"Details")+' →</a>'
+      : (e.linkText ? '<span class="more soon">'+esc(e.linkText)+' (coming soon)</span>' : "");
+    var flyer = url(e.flyer) ? '<a class="more" href="'+esc(url(e.flyer))+'" rel="noopener">View flyer →</a>' : "";
+    var more = moreInfo(e.more);
+    var id = e.id ? ' id="'+esc(e.id)+'"' : '';
+    return '<li class="ev"'+id+'>'+dateBox+'<div><h4>'+esc(e.title)+'</h4><p class="info">'+info+'</p>'+(e.details?'<p>'+esc(e.details)+'</p>':'')+more+((link||flyer)?'<div class="links">'+link+flyer+'</div>':'')+'</div></li>';
+  }).join("") : '<li><p class="empty">Nothing scheduled right now. Check back soon.</p></li>';
+
+  // A link to #event-id opens that event's details and scrolls to it
+  function openTarget(){
+    var h = decodeURIComponent(location.hash.slice(1)); if(!h) return;
+    var el = document.getElementById(h); if(!el || !el.classList.contains("ev")) return;
+    var d = el.querySelector("details"); if(d) d.open = true;
+    el.scrollIntoView({block:"start"});
+  }
+  window.addEventListener("hashchange", openTarget);
+  setTimeout(openTarget, 0);
+
+
+})();
+</script>
+</body>
+</html>

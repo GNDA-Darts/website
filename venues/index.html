@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Venues · GNDA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<meta name="description" content="Bars around Nashville with steel-tip dart boards, including GNDA league venues and weekly blind draws.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/pages.css">
+<style>
+/* Venues layout: page heading, then two card grids (league venues, other venues). */
+.head{padding-block:32px 8px}
+main .wrap{padding-block:8px 56px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.head .lede{margin-top:0}
+.sub{color:var(--muted);font-size:14px;margin:-4px 0 12px}
+.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.bar{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.bar .area{font:600 11px/1.3 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.bar b{font:700 21px/1.1 var(--display);letter-spacing:.01em}
+.bar a{font-size:13px;color:var(--ink2);text-decoration-color:var(--rule);text-underline-offset:3px;margin-top:4px;overflow-wrap:anywhere}
+.bar .bd{align-self:flex-start;margin-top:8px;font:600 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:var(--green-soft);padding:4px 7px;border-radius:4px}
+section+section{margin-top:36px}
+.host{margin:32px 0 0;padding:14px 18px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;color:var(--ink2);font-size:15px}
+.host a{font-weight:600}
+@media (max-width:560px){ .head{padding-block:24px 4px} }
+</style>
+</head>
+<body>
+<script src="../assets/site.js" data-root="../" data-page="venues"></script>
+
+<div class="head">
+  <div class="wrap">
+    <h1 class="sr">Venues</h1>
+    <p class="lede">Bars around Nashville with steel-tip boards. Tap an address for directions.</p>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <section aria-labelledby="league-h">
+      <h2 id="league-h">League venues</h2>
+      <p class="sub">GNDA league matches are played here on Wednesday nights.</p>
+      <ul class="grid" id="league"></ul>
+    </section>
+    <section aria-labelledby="other-h">
+      <h2 id="other-h">Other venues</h2>
+      <p class="sub">More bars with steel-tip boards.</p>
+      <ul class="grid" id="other"></ul>
+    </section>
+    <p class="host" id="host"></p>
+  </div>
+</main>
+
+<script src="../data/venues.js"></script>
+<script>
+(function(){
+  var V = window.GNDA_VENUES || {venues:[],blindDraws:[]};
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+  function mapLink(name,address){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((name?name+", ":"")+address)}
+
+  // Weekly blind-draw nights, shown on each venue's card
+  var nights = {};
+  (V.blindDraws||[]).forEach(function(b){var k=String(b.venue).toLowerCase();(nights[k]=nights[k]||[]).push(b.day+"s "+b.time)});
+
+  function card(v){
+    var n = nights[String(v.name).toLowerCase()];
+    return '<li class="bar"><span class="area">'+esc(v.area||"")+'</span><b>'+esc(v.name)+'</b>'+
+      (v.address?'<a href="'+mapLink(v.name,v.address)+'" rel="noopener">'+esc(v.address)+'</a>':'')+
+      (n?'<span class="bd">Blind draw '+esc(n.join(", "))+'</span>':'')+'</li>';
+  }
+  function fill(id, list, emptyText){
+    document.getElementById(id).innerHTML = list.length ? list.map(card).join("") : '<li><p class="empty">'+emptyText+'</p></li>';
+  }
+  var host = document.getElementById("host");
+  if(V.hostNote){ host.innerHTML = esc(V.hostNote).replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function(m,t,u){ return '<a href="'+(/^https?:/i.test(u)?u:"../"+u)+'">'+t+'</a>'; }); } else host.hidden = true;
+  var all = V.venues||[];
+  fill("league", all.filter(function(v){return v.league}), "No league venues listed yet.");
+  fill("other",  all.filter(function(v){return !v.league}), "None listed yet.");
+})();
+</script>
+</body>
+</html>

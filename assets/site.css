@@ -1,0 +1,94 @@
+/* GNDA site chrome, loaded by every page (including Stats): colors, fonts, header, menu, footer.
+   Palette and type match the league stats page so the whole site reads as one.
+   Shared styles for the content pages are in pages.css; each page keeps its own layout in its <style> block. */
+:root{
+  /* Option C "Board black": black header and footer, warm light page, dartboard green and red */
+  --ground:#F3F2EE; --surface:#FFFFFF; --sunk:#E9E7E1; --ink:#141414; --ink2:#45433F; --muted:#6A675F;
+  --rule:#DAD7CF; --green:#0B7340; --green-soft:#D9EFE1; --red:#B81C29; --red-soft:#F8DADB; --focus:#1B5FD0;
+  --link:#0B5D33;                                   /* hyperlinks: deep green */
+  --chart:#0B7340; --chart-fill:rgba(11,115,64,.12); --grid:#E6E4DE;
+  --head:#141414; --head-ink:#F4F1E8; --head-ink2:#CBC6BA; --head-line:#3A3936; --head-edge:#141414; --head-shade:rgba(255,255,255,.12);
+  --seg-green:#0E7F43; --seg-red:#C81F2D; --on-seg:#FFFFFF;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;   /* light only: no dark mode */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.55 var(--body);min-height:100vh;display:flex;flex-direction:column}
+main{flex:1}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;width:100%;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--head)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--head);border-bottom:1px solid var(--head-edge)}
+.top .wrap{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--head-ink);font:700 22px/1 var(--display);letter-spacing:.04em}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-left:auto}  /* room for the hover ring */
+.nav a,.nav span{padding:8px 10px;border-radius:6px;font:600 16px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--head-ink2)}
+/* Hover: a double bull. White text on a red pill (the double bull) inside a green block that fills
+   the height of the bar (the single bull, bigger because it's easier to hit). Both are pills. */
+.nav > a{position:relative;z-index:0;transition:color .15s}
+.nav > a::before,.nav > a::after{content:"";position:absolute;opacity:0;transition:opacity .15s;pointer-events:none}
+.nav > a::before{z-index:-2;left:-10px;right:-10px;top:-10px;bottom:-10px;border-radius:999px;background:var(--seg-green)}  /* same 10px all round, so the two pills are concentric */
+.nav > a::after{z-index:-1;inset:0;border-radius:999px;background:var(--seg-red)}
+.nav > a:hover,.nav > a:focus-visible{color:var(--on-seg)}
+.nav > a:hover::before,.nav > a:hover::after,.nav > a:focus-visible::before,.nav > a:focus-visible::after{opacity:1}
+/* Current page: shaded, no colored underline */
+.nav a[aria-current="page"]{color:var(--head-ink);background:var(--head-shade)}
+.nav > a[aria-current="page"]:hover{background:transparent}
+.nav > span{color:var(--head-ink2);opacity:.5;cursor:default}
+
+/* League row: a second, quieter row of links on League pages; sticks just under the menu */
+.subnav{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--top-h,0px));z-index:4;background:var(--sunk);border-bottom:1px solid var(--rule)}
+.subnav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:6px;position:relative}
+.subnav .wrap::-webkit-scrollbar{display:none}
+.subnav a{flex:none;padding:7px 10px;border-radius:6px;font:600 15px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink2);transition:background-color .15s,color .15s}
+.subnav a:hover,.subnav a:focus-visible{background:var(--surface);color:var(--ink)}
+.subnav a[aria-current="page"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+
+/* Footer */
+footer{border-top:1px solid var(--head-edge);background:var(--head)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;padding-block:22px;font-size:14px;color:var(--head-ink2);align-items:center}
+footer strong{font:700 18px/1 var(--display);letter-spacing:.04em;color:var(--head-ink);margin-right:auto}
+footer a{color:var(--head-ink);font-weight:600}
+.soc{display:inline-flex;align-items:center;gap:6px}
+.soc img{display:block;flex:none}
+.mail{user-select:all}
+
+/* Menu button and the in-menu League links: phones only */
+.menu-btn,.nav-sub{display:none}
+
+@media (max-width:560px){
+  /* On phones the menu scrolls away; only the League row stays pinned */
+  .top{position:relative}
+  .subnav{top:env(safe-area-inset-top,0px)}
+}
+/* Up to 800px wide the menu sits behind a Menu button, so the bar always fits on one line */
+@media (max-width:800px){
+  .top .wrap{gap:0 16px}
+  .menu-btn{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding:9px 12px;border:1px solid var(--head-line);border-radius:6px;
+    background:transparent;color:var(--head-ink);font:600 16px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .menu-btn:hover{background:var(--head-shade)}
+  .menu-icon{position:relative;width:16px;height:12px;flex:none}
+  .menu-icon i{position:absolute;left:0;width:100%;height:2px;border-radius:1px;background:currentColor;transition:transform .2s,opacity .2s}
+  .menu-icon i:nth-child(1){top:0} .menu-icon i:nth-child(2){top:5px} .menu-icon i:nth-child(3){top:10px}
+  /* Open: icon becomes an X */
+  .menu-open .menu-icon i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+  .menu-open .menu-icon i:nth-child(2){opacity:0}
+  .menu-open .menu-icon i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+  /* The menu drops down as a list under the header row, pushing the page down */
+  .nav{display:none;margin-left:0;width:100%;flex-direction:column;gap:0;padding:8px 0 4px}
+  .menu-open .nav{display:flex}
+  .nav a,.nav span{padding:14px 12px;font-size:18px;border-top:1px solid var(--head-line);border-radius:0}
+  .nav a[aria-current="page"]{background:var(--head-shade)}
+  /* In the drop-down list, hover is a plain shade (no double bull) */
+  .nav > a::before,.nav > a::after{display:none}
+  .nav a:hover{background:var(--head-shade)}
+  /* League links, indented under League */
+  .nav-sub{display:flex;flex-direction:column;padding:0 0 6px 24px}
+  .nav .nav-sub a{padding:10px 12px;font-size:16px;border-top:0;color:var(--head-ink2);opacity:.85}
+  .nav .nav-sub a[aria-current="page"]{color:var(--head-ink);opacity:1;background:var(--head-shade)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
