@@ -1,0 +1,12 @@
+{
+ "fails": {
+  "Events": 0,
+  "Announcements": 0,
+  "Blind draws": 0,
+  "Venues": 0,
+  "Board": 0,
+  "Hall of fame": 0,
+  "Settings": 0
+ },
+ "problems": []
+}

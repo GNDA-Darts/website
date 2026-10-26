@@ -1,0 +1,86 @@
+name: Update website
+
+# Every hour: read the Sheet's published tabs, update data/sheet.js if anything changed, publish the site.
+# Also runs on every push to main, and on demand: Actions → Update website → Run workflow.
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: website
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.sync.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Read the Sheet
+        id: sync
+        run: node .github/scripts/sync-sheet.mjs
+
+      - name: Save changes
+        run: |
+          git config user.name "GNDA website sync"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/sheet.js .github/sync-state.json
+          if ! git diff --cached --quiet; then
+            msg=$(node -e "const r=require('./.github/sync-report.json');console.log((r.changes.length?r.changes:['Sync status']).join(' ').slice(0,300))")
+            git commit -m "Sheet update: $msg"
+            git push
+          fi
+          # GitHub switches off hourly jobs in repositories with no commits for 60 days. Keep it on.
+          if [ $(( $(date +%s) - $(git log -1 --format=%ct) )) -gt $(( 50 * 86400 )) ]; then
+            git commit --allow-empty -m "Keep the hourly website update switched on"
+            git push
+          fi
+
+      - name: Email the website administrator
+        if: steps.sync.outputs.notify == 'true'
+        env:
+          SHEET_NOTIFY_URL: ${{ secrets.SHEET_NOTIFY_URL }}
+          SHEET_NOTIFY_KEY: ${{ secrets.SHEET_NOTIFY_KEY }}
+          SITE_URL: https://gnda-darts.github.io/website/
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: node .github/scripts/notify.mjs
+
+  deploy:
+    needs: sync
+    if: needs.sync.outputs.changed == 'true' || github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Collect the site files
+        run: rsync -a --exclude '.git' --exclude '.github' --exclude '.gitignore' --exclude '_site' ./ _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
