@@ -56,7 +56,7 @@ main .wrap{padding-block:32px 56px}
   $("groups").innerHTML = (S.groups||[]).map(function(g){
     return '<section class="group"><h2>'+esc(g.title)+'</h2><div class="grid">'+(g.items||[]).map(function(i){
       return '<div class="item"><h3>'+esc(i.name)+'</h3><div class="price">'+esc(i.price)+'</div><div class="unit">'+esc(i.unit||"")+'</div>'+
-        (i.text?'<p>'+linkify(i.text)+'</p>':'')+(i.link?'<a class="btn primary" href="'+esc(link(i.link))+'" rel="noopener">Pay online</a>':'')+'</div>';
+        (i.text?'<p>'+linkify(i.text)+'</p>':'')+(i.link?'<a class="btn primary" href="'+esc(link(i.link))+'" rel="noopener">'+esc(i.button||"Pay online")+'</a>':'')+'</div>';
     }).join("")+'</div></section>';
   }).join("");
   var soon=$("soon"); if(S.comingSoon) soon.textContent=S.comingSoon; else soon.hidden=true;

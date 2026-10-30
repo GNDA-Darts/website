@@ -21,6 +21,7 @@
   var LEAGUE = [
     // Second row of links on every League page
     ["Overview",    "league/index.html",                 "overview"],
+    ["Register",    "league/register/index.html",        "register"],
     ["Standings",   "league/stats/index.html#standings", "standings"],
     ["Players",     "league/stats/index.html#players",   "players"],
     ["Leaderboard", "league/stats/index.html#leaders",   "leaders"],
