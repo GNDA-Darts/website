@@ -138,6 +138,7 @@ dialog::backdrop{background:rgba(10,16,13,.55)}
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
 .tile{background:var(--surface);padding:10px 12px}
 .tile b{display:block;font:700 28px/1 var(--display);font-variant-numeric:tabular-nums}
+@media (max-width:560px){.bar{top:env(safe-area-inset-top,0px)}}
 @media (max-width:520px){.tiles{grid-template-columns:repeat(2,1fr)} .tabs button{padding:8px 7px;font-size:17px}}
 .tile span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}

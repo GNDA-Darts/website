@@ -1,6 +1,6 @@
 // GNDA site header and footer, shared by every page.
 // To add or rename a menu item, edit MENU below; every page picks it up.
-// League pages also get a second row of links (LEAGUE below).
+// League pages also get a second row of links (LEAGUE below), on wider screens only; phones list them in the Menu.
 //
 // Each page includes, as the first thing inside <body>:
 //   <script src="assets/site.js" data-root="" data-page="home"></script>
