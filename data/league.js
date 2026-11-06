@@ -5,16 +5,9 @@
 window.GNDA_LEAGUE = {
 
   // ---------- Overview ----------
-  // The two leagues, side by side at the top of the page. Links are written from the site's top folder.
-  leagues: [
-    { name: "Team league", when: "Wednesdays at 7:30 pm",
-      facts: ["Teams of 4 to 6 players", "Divisions of similarly skilled teams", "$20 per player, per session", "Fall, Winter and Summer sessions"],
-      buttons: [["Register a team", "league/register/index.html"], ["Standings", "league/stats/index.html#standings"]] },
-    { name: "Singles league", badge: "New", when: "Any day, at any GNDA bar",
-      facts: ["One-on-one 501", "3 divisions, set by DartConnect average", "Groups of up to 8: play everyone once, then playoffs", "$50 buy-in; prizes depend on the number of players"],
-      buttons: [["Sign up", "league/register/singles/index.html"], ["Standings", "league/singles/index.html#standings"]] }
-  ],
-  both: "Both leagues are for GNDA members (membership is $20 a year; see the [Store](store/index.html)). You can play in both.",
+  // Registration buttons beside each league's heading. Links are written from the site's top folder.
+  teamRegister:    ["Register a team", "league/register/index.html"],
+  singlesRegister: ["Sign up", "league/register/singles/index.html"],
 
   // Singles league: how it works (shown under the Team league's items)
   singlesHow: [
@@ -26,6 +19,8 @@ window.GNDA_LEAGUE = {
       text: "When you sign up, you tell us which afternoons and evenings usually work for you. You get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." },
     { title: "Matches and prizes",
       text: "Matches are 501: Division 1 plays first to 11 legs; Divisions 2 and 3 play best of 11 and best of 9 legs. The top three in each group go to the playoffs, and prizes go to the top three; the amounts depend on the number of players. Details are in the [singles rules](league/singles/rules/index.html)." },
+    { title: "Cost",
+      text: "A $50 buy-in each session, plus GNDA membership ($20 a year; see the [Store](store/index.html))." },
     { title: "Sessions",
       text: "Three sessions a year: two in the first half of the year, then a summer break, and one in the fall. Dates to be announced." }
   ],
