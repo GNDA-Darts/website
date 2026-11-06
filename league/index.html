@@ -26,7 +26,6 @@ main .wrap{padding-block:28px 56px}
 /* League heading with its registration button on the right */
 .part-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
 .part-h h2{margin:0;display:flex;align-items:center;gap:10px}
-.badge{font:700 11px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--surface);background:var(--red);border-radius:4px;padding:4px 6px}
 .btn.primary{background:var(--green);color:var(--surface);border:1px solid var(--green)}
 /* Singles divisions table */
 .divs{width:100%;max-width:760px;border-collapse:collapse;margin:10px 0 8px;font-size:15px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
@@ -62,7 +61,7 @@ main .wrap{padding-block:28px 56px}
   // The Team | Singles switch in the League row picks which overview shows (#team, #singles; Team by default)
   function show(){
     var key = location.hash==="#singles" ? "singles" : "team", O = (L.overview||{})[key] || {};
-    $("h-league").innerHTML = esc(O.name)+(O.badge?' <span class="badge">'+esc(O.badge)+'</span>':'');
+    $("h-league").textContent = O.name;
     $("reg").innerHTML = O.register ? '<a class="btn primary" href="../'+esc(O.register[1])+'">'+esc(O.register[0])+'</a>' : '';
     $("how").innerHTML = (O.items||[]).map(item).join("");
     $("sr-title").textContent = O.name+" overview";

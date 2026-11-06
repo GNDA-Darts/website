@@ -27,8 +27,8 @@ window.GNDA_LEAGUE = {
       ]
     },
     singles: {
-      name: "Singles league", badge: "New",
-      register: ["Sign up", "league/register/singles/index.html"],
+      name: "Singles league",
+      register: ["Register", "league/register/singles/index.html"],
       items: [
         { title: "When and where",
           text: "Any day, at any GNDA bar: you and your opponent pick the time and place. Matches can be played in any order, as long as all of them are finished by the session deadline." },
@@ -41,7 +41,7 @@ window.GNDA_LEAGUE = {
         { title: "Cost",
           text: "A $50 buy-in each session, plus GNDA membership ($20 a year; see the [Store](store/index.html)). Prizes go to the top three in each group; the amounts depend on the number of players." },
         { title: "How to join",
-          text: "Sign up and tell us which afternoons and evenings usually work for you. You get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." }
+          text: "Register and tell us which afternoons and evenings usually work for you. You get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." }
       ]
     }
   },
