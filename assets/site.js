@@ -50,8 +50,8 @@
     return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(m[1]))+'" data-sub="'+m[2]+'"'+(page==="league" && m[2]===sub?' aria-current="page"':'')+'>'+esc(m[0])+'</a>';
   }
   function groupOf(key){ for(var i=0;i<LEAGUES.length;i++){ if(LEAGUES[i].items.some(function(m){return m[2]===key})) return LEAGUES[i]; } return null; }
-  function groupLink(g, text, cls){
-    return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(g.items[0][1]))+'" data-group="'+g.key+'"'+(page==="league" && groupOf(sub)===g?' aria-current="page"':'')+'>'+esc(text)+'</a>';
+  function groupLink(g, text, cls, on){
+    return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(g.items[0][1]))+'" data-group="'+g.key+'"'+(page==="league" && (on || groupOf(sub)===g)?' aria-current="page"':'')+'>'+esc(text)+'</a>';
   }
 
   // On phones the menu lists the league pages under Leagues (wider screens use the League row)
@@ -64,10 +64,11 @@
       (m[2]==="league" ? leagueSub : '');
   }).join("");
 
-  var cur = groupOf(sub);
+  // Pages that belong to neither league (Overview, Register) show the Team league's links; the singles signup page shows Singles'
+  var cur = groupOf(sub) || (/\/singles\//.test(location.pathname) ? LEAGUES[1] : LEAGUES[0]);
   var subnav = page!=="league" ? '' :
     '<nav class="subnav" aria-label="Leagues"><div class="wrap">'+link(OVERVIEW)+
-      '<span class="switch" role="group" aria-label="League">'+LEAGUES.map(function(g){ return groupLink(g, g.label); }).join("")+'</span>'+
+      '<span class="switch" role="group" aria-label="League">'+LEAGUES.map(function(g){ return groupLink(g, g.label, "", g===cur); }).join("")+'</span>'+
       LEAGUES.map(function(g){
         return '<span class="pages" data-row="'+g.key+'"'+(g===cur?'':' hidden')+'>'+g.items.map(function(x){return link(x)}).join("")+'</span>';
       }).join("")+
