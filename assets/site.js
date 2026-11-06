@@ -1,6 +1,6 @@
 // GNDA site header and footer, shared by every page.
 // To add or rename a menu item, edit MENU below; every page picks it up.
-// League pages also get a second row: Overview, a Team | Singles switch and that league's pages (LEAGUES below), on wider screens only; phones list them in the Menu.
+// League pages also get a second row: a Team | Singles switch and that league's pages (LEAGUES below), on wider screens only; phones list them in the Menu.
 //
 // Each page includes, as the first thing inside <body>:
 //   <script src="assets/site.js" data-root="" data-page="home"></script>
@@ -20,9 +20,12 @@
   ];
   // League row: Overview, a Team | Singles switch, then the chosen league's own pages.
   // Register isn't in the row: the league cards on the Overview, the Home announcement and the Store link to it.
-  var OVERVIEW = ["Overview", "league/index.html", "overview"];
+  // League row: a Team | Singles switch, then the chosen league's pages. The switch keeps you on the same
+  // kind of page (Overview → Overview, Rules → Rules, Standings → Standings), or its Overview if there's no match.
+  // Register isn't in the row: each league's Overview links to it.
   var LEAGUES = [
     { label: "Team", long: "Team league", key: "team", items: [
+      ["Overview",    "league/index.html#team",            "overview"],
       ["Standings",   "league/stats/index.html#standings", "standings"],
       ["Players",     "league/stats/index.html#players",   "players"],
       ["Leaderboard", "league/stats/index.html#leaders",   "leaders"],
@@ -30,6 +33,7 @@
       ["Rules",       "league/rules/index.html",           "rules"]
     ]},
     { label: "Singles", long: "Singles league", key: "singles", items: [
+      ["Overview",    "league/index.html#singles",           "s-overview"],
       ["Standings",   "league/singles/index.html#standings", "s-standings"],
       ["Matches",     "league/singles/index.html#matches",   "s-matches"],
       ["Rules",       "league/singles/rules/index.html",     "s-rules"]
@@ -50,24 +54,33 @@
     return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(m[1]))+'" data-sub="'+m[2]+'"'+(page==="league" && m[2]===sub?' aria-current="page"':'')+'>'+esc(m[0])+'</a>';
   }
   function groupOf(key){ for(var i=0;i<LEAGUES.length;i++){ if(LEAGUES[i].items.some(function(m){return m[2]===key})) return LEAGUES[i]; } return null; }
+  function itemOf(key){ var g=groupOf(key); return g ? g.items.filter(function(m){return m[2]===key})[0] : null; }
+  // Where the switch takes you: the same kind of page in that league, else its Overview
+  function switchTo(g, key){
+    var it = itemOf(key), same = it && g.items.filter(function(m){return m[0]===it[0]})[0];
+    return (same || g.items[0])[1];
+  }
   function groupLink(g, text, cls, on){
-    return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(g.items[0][1]))+'" data-group="'+g.key+'"'+(page==="league" && (on || groupOf(sub)===g)?' aria-current="page"':'')+'>'+esc(text)+'</a>';
+    return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(cls ? g.items[0][1] : switchTo(g, sub)))+'" data-group="'+g.key+'"'+(page==="league" && (on || groupOf(sub)===g)?' aria-current="page"':'')+'>'+esc(text)+'</a>';
   }
 
-  // On phones the menu lists the league pages under Leagues (wider screens use the League row)
-  var leagueSub = '<div class="nav-sub">'+link(OVERVIEW)+LEAGUES.map(function(g){
+  // Pages that belong to neither league (Register) follow their address: the singles signup page shows Singles, others Team
+  var cur = groupOf(sub) || (/\/singles\//.test(location.pathname) ? LEAGUES[1] : LEAGUES[0]);
+
+  // On phones the menu lists both leagues' pages under Leagues (wider screens use the League row)
+  var leagueSub = '<div class="nav-sub">'+LEAGUES.map(function(g){
       return groupLink(g, g.long, "nav-grp")+'<div class="nav-sub2">'+g.items.map(function(x){return link(x)}).join("")+'</div>';
     }).join("")+'</div>';
   var items = MENU.map(function(m){
     if(!m[1]) return '<span title="Coming soon">'+esc(m[0])+'</span>';
-    return '<a href="'+esc(href(m[1]))+'"'+(m[2]===page?' aria-current="page"':'')+'>'+esc(m[0])+'</a>'+
+    // On a league page, Leagues goes to that league's Overview
+    var to = m[2]==="league" && page==="league" ? cur.items[0][1] : m[1];
+    return '<a href="'+esc(href(to))+'"'+(m[2]===page?' aria-current="page"':'')+(m[2]==="league"?' data-leagues':'')+'>'+esc(m[0])+'</a>'+
       (m[2]==="league" ? leagueSub : '');
   }).join("");
 
-  // Pages that belong to neither league (Overview, Register) show the Team league's links; the singles signup page shows Singles'
-  var cur = groupOf(sub) || (/\/singles\//.test(location.pathname) ? LEAGUES[1] : LEAGUES[0]);
   var subnav = page!=="league" ? '' :
-    '<nav class="subnav" aria-label="Leagues"><div class="wrap">'+link(OVERVIEW)+
+    '<nav class="subnav" aria-label="Leagues"><div class="wrap">'+
       '<span class="switch" role="group" aria-label="League">'+LEAGUES.map(function(g){ return groupLink(g, g.label, "", g===cur); }).join("")+'</span>'+
       LEAGUES.map(function(g){
         return '<span class="pages" data-row="'+g.key+'"'+(g===cur?'':' hidden')+'>'+g.items.map(function(x){return link(x)}).join("")+'</span>';
@@ -113,6 +126,11 @@
       if(g && a.getAttribute("data-group")===g.key) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
     });
     document.querySelectorAll(".subnav .pages").forEach(function(r){ r.hidden = !(g && r.getAttribute("data-row")===g.key); });
+    document.querySelectorAll(".switch [data-group]").forEach(function(a){
+      var t = LEAGUES.filter(function(x){return x.key===a.getAttribute("data-group")})[0];
+      a.setAttribute("href", href(switchTo(t, key)));
+    });
+    var lg = document.querySelector("[data-leagues]"); if(lg && g) lg.setAttribute("href", href(g.items[0][1]));
     reveal();
   };
   reveal();

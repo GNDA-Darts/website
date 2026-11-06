@@ -5,25 +5,48 @@
 window.GNDA_LEAGUE = {
 
   // ---------- Overview ----------
-  // Registration buttons beside each league's heading. Links are written from the site's top folder.
-  teamRegister:    ["Register a team", "league/register/index.html"],
-  singlesRegister: ["Sign up", "league/register/singles/index.html"],
+  // One overview per league, chosen with the Team | Singles switch. Both use the same headings in the same order.
+  // Links: write [link text](page) — e.g. [Venues page](venues/index.html) — and it becomes a link.
+  overview: {
+    team: {
+      name: "Team league",
+      register: ["Register a team", "league/register/index.html"],
+      items: [
+        { title: "When and where",
+          text: "Wednesdays at 7:30 pm. Each team picks a home bar and plays every other team in its division twice: once at home and once away. See the [Venues page](venues/index.html) for league bars." },
+        { title: "Format",
+          text: "Each match is a mix of singles, doubles and a team game, playing 501, cricket and 1001. Details are in the [rules](league/rules/index.html)." },
+        { title: "Teams and divisions",
+          text: "Teams have 4 to 6 players and play in divisions of 4 to 6 similarly skilled teams, placed by players' stats and ability." },
+        { title: "Sessions",
+          text: "Three a year: Fall (September–November), Winter (January–March) and Summer (May–July)." },
+        { title: "Cost",
+          text: "$20 per player each session, paid by the captain when registering the team, plus GNDA membership ($20 a year; see the [Store](store/index.html)). The session fee covers the scoring and stats service the league runs on, which charges per player, and helps fund the end-of-session awards ceremony." },
+        { title: "How to join",
+          text: "A captain registers the team and pays its session fee. The captain also sets the lineup on league night, makes sure every match is scored, and passes league news to the team." }
+      ]
+    },
+    singles: {
+      name: "Singles league", badge: "New",
+      register: ["Sign up", "league/register/singles/index.html"],
+      items: [
+        { title: "When and where",
+          text: "Any day, at any GNDA bar: you and your opponent pick the time and place. Matches can be played in any order, as long as all of them are finished by the session deadline." },
+        { title: "Format",
+          text: "One-on-one 501, scored in DartConnect. Division 1 plays first to 11 legs; Divisions 2 and 3 play best of 11 and best of 9. Details are in the [rules](league/singles/rules/index.html)." },
+        { title: "Divisions and groups",
+          text: "Three divisions, placed by DartConnect 501 average. Each division is split into groups of up to 8 of similar overall strength, and you play everyone in your group once (7 matches in a group of 8). The top three in each group go to the playoffs." },
+        { title: "Sessions",
+          text: "Three a year: two in the first half of the year, then a summer break, and one in the fall. Dates to be announced." },
+        { title: "Cost",
+          text: "A $50 buy-in each session, plus GNDA membership ($20 a year; see the [Store](store/index.html)). Prizes go to the top three in each group; the amounts depend on the number of players." },
+        { title: "How to join",
+          text: "Sign up and tell us which afternoons and evenings usually work for you. You get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." }
+      ]
+    }
+  },
 
-  // Singles league: how it works (shown under the Team league's items)
-  singlesHow: [
-    { title: "Divisions and groups",
-      text: "Players are placed in one of three divisions by their DartConnect 501 average, then split into groups of up to 8 of similar overall strength. Division sizes are set after signups close, so every group is full or close to it." },
-    { title: "Playing your matches",
-      text: "You play each player in your group once: 7 matches in a group of 8. Play at any GNDA bar, on any day and at any time you both agree on, in any order. All matches must be finished by the session deadline. Every match is scored in DartConnect." },
-    { title: "Finding a time",
-      text: "When you sign up, you tell us which afternoons and evenings usually work for you. You get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." },
-    { title: "Matches and prizes",
-      text: "Matches are 501: Division 1 plays first to 11 legs; Divisions 2 and 3 play best of 11 and best of 9 legs. The top three in each group go to the playoffs, and prizes go to the top three; the amounts depend on the number of players. Details are in the [singles rules](league/singles/rules/index.html)." },
-    { title: "Cost",
-      text: "A $50 buy-in each session, plus GNDA membership ($20 a year; see the [Store](store/index.html))." },
-    { title: "Sessions",
-      text: "Three sessions a year: two in the first half of the year, then a summer break, and one in the fall. Dates to be announced." }
-  ],
+  // Singles rules page
   singlesDivisions: [
     { division: "Division 1", match: "First to 11 legs. Ends at 11 wins or 20 legs played (10–10 is a tie).", ranked: "Wins, losses and ties" },
     { division: "Division 2", match: "Best of 11 legs. All 11 are played.", ranked: "Legs won" },
@@ -48,21 +71,6 @@ window.GNDA_LEAGUE = {
     ]}
   ],
   singlesPrizes: "Prizes go to the top three in each group. The amounts depend on the number of players in the group and are announced once groups are set.",
-
-  // Team league: how it works
-  // How it works: a heading and a paragraph each.
-  // Links: write [link text](page) — e.g. [Venues page](venues/index.html) — and it becomes a link.
-  howItWorks: [
-    { title: "League night",
-      text: "Matches are played Wednesdays at 7:30 pm, in three sessions a year: Fall (September–November), Winter (January–March) and Summer (May–July). Each match is a mix of singles, doubles and a team game, playing 501, cricket and 1001." },
-    { title: "Teams and divisions",
-      text: "Each team has 4 to 6 players and is placed in a division of 4 to 6 similarly skilled teams, based on players' stats and ability. Each session carries a team fee of $20 per player on the roster. The fee covers the scoring and stats service the league runs on, which charges per player, and helps fund the end-of-session awards ceremony." },
-    { title: "Home and away",
-      text: "Each team picks a home bar and plays every other team in its division twice: once at its home bar and once at the other team's. See the [Venues page](venues/index.html) for a list of league bars." },
-    { title: "Captains",
-      text: "Each team has a captain who signs up the team and pays the team session fee, sets the lineup on league night, makes sure every match is scored, and passes league news to the team." }
-  ],
-
 
   // ---------- Sub list ----------
   subsIntro: "Players available to fill in when a team is short.",

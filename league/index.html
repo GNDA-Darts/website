@@ -38,12 +38,11 @@ main .wrap{padding-block:28px 56px}
 </head>
 <body>
 <script src="../assets/site.js" data-root="../" data-page="league" data-sub="overview"></script>
-<h1 class="sr">Leagues overview</h1>
+<h1 class="sr" id="sr-title">League overview</h1>
 
 <main>
   <div class="wrap">
-    <section class="part" aria-labelledby="h-team"><div class="part-h"><h2 id="h-team">Team league</h2><span id="reg-team"></span></div><ul class="how" id="how"></ul></section>
-    <section class="part" aria-labelledby="h-singles"><div class="part-h"><h2 id="h-singles">Singles league <span class="badge">New</span></h2><span id="reg-singles"></span></div><ul class="how" id="singles"></ul></section>
+    <section class="part" aria-labelledby="h-league"><div class="part-h"><h2 id="h-league"></h2><span id="reg"></span></div><ul class="how" id="how"></ul></section>
   </div>
 </main>
 <script src="../data/league.js"></script>
@@ -59,16 +58,19 @@ main .wrap{padding-block:28px 56px}
       return '<a href="'+u+'">'+txt+'</a>';
     });
   }
-  function item(h){
-    var t = h.divisions ? '<table class="divs"><thead><tr><th>Division</th><th>Match</th><th>Standings by</th></tr></thead><tbody>'+
-      (L.singlesDivisions||[]).map(function(d){return '<tr><td>'+esc(d.division)+'</td><td>'+esc(d.match)+'</td><td>'+esc(d.ranked)+'</td></tr>'}).join("")+'</tbody></table>' : '';
-    return '<li><b>'+esc(h.title)+'</b>'+t+'<p>'+linkify(h.text)+'</p></li>';
+  function item(h){ return '<li><b>'+esc(h.title)+'</b><p>'+linkify(h.text)+'</p></li>'; }
+  // The Team | Singles switch in the League row picks which overview shows (#team, #singles; Team by default)
+  function show(){
+    var key = location.hash==="#singles" ? "singles" : "team", O = (L.overview||{})[key] || {};
+    $("h-league").innerHTML = esc(O.name)+(O.badge?' <span class="badge">'+esc(O.badge)+'</span>':'');
+    $("reg").innerHTML = O.register ? '<a class="btn primary" href="../'+esc(O.register[1])+'">'+esc(O.register[0])+'</a>' : '';
+    $("how").innerHTML = (O.items||[]).map(item).join("");
+    $("sr-title").textContent = O.name+" overview";
+    document.title = O.name+" · GNDA";
+    if(window.GNDA && GNDA.setSub) GNDA.setSub(key==="singles" ? "s-overview" : "overview");
   }
-  function reg(id, b){ if(b) $(id).innerHTML = '<a class="btn primary" href="../'+esc(b[1])+'">'+esc(b[0])+'</a>'; }
-  reg("reg-team", L.teamRegister);
-  reg("reg-singles", L.singlesRegister);
-  $("how").innerHTML = (L.howItWorks||[]).map(item).join("");
-  $("singles").innerHTML = (L.singlesHow||[]).map(item).join("");
+  window.addEventListener("hashchange", show);
+  show();
 })();
 </script>
 </body>
