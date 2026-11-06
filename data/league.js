@@ -20,10 +20,8 @@ window.GNDA_LEAGUE = {
           text: "Teams have 4 to 6 players and play in divisions of 4 to 6 similarly skilled teams, placed by players' stats and ability." },
         { title: "Sessions",
           text: "Three a year: Fall (September–November), Winter (January–March) and Summer (May–July)." },
-        { title: "Cost",
-          text: "$20 per player each session, paid by the captain when registering the team, plus GNDA membership ($20 a year; see the [Store](store/index.html)). The session fee covers the scoring and stats service the league runs on, which charges per player, and helps fund the end-of-session awards ceremony." },
         { title: "How to join",
-          text: "A captain registers the team and pays its session fee. The captain also sets the lineup on league night, makes sure every match is scored, and passes league news to the team." }
+          text: "Captains are responsible for [registering the team](league/register/index.html). The team session fee is $20 per player and must be paid at the time of registration. The captain is also responsible for confirming that their home bar is available to host them before completing the registration." }
       ]
     },
     singles: {
@@ -35,13 +33,11 @@ window.GNDA_LEAGUE = {
         { title: "Format",
           text: "One-on-one 501, scored in DartConnect. Division 1 plays first to 11 legs; Divisions 2 and 3 play best of 11 and best of 9. Details are in the [rules](league/singles/rules/index.html)." },
         { title: "Divisions and groups",
-          text: "Three divisions, placed by DartConnect 501 average. Each division is split into groups of up to 8 of similar overall strength, and you play everyone in your group once (7 matches in a group of 8). The top three in each group go to the playoffs." },
+          text: "Three divisions, placed by DartConnect 501 average. Each division is split into groups of up to 8 of similar overall strength, and you play everyone in your group once (7 matches in a group of 8). The top three in each group go to the playoffs, and prizes go to the top three; the amounts depend on the number of players." },
         { title: "Sessions",
           text: "Three a year: two in the first half of the year, then a summer break, and one in the fall. Dates to be announced." },
-        { title: "Cost",
-          text: "A $50 buy-in each session, plus GNDA membership ($20 a year; see the [Store](store/index.html)). Prizes go to the top three in each group; the amounts depend on the number of players." },
         { title: "How to join",
-          text: "Register and tell us which afternoons and evenings usually work for you. You get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." }
+          text: "Players are responsible for [registering themselves](league/register/singles/index.html). The buy-in is $50 per player and must be paid at the time of registration. When you register, you tell us which afternoons and evenings usually work for you; you get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." }
       ]
     }
   },
