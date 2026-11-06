@@ -26,6 +26,7 @@ main .wrap{padding-block:28px 56px}
 /* League heading with its registration button on the right */
 .part-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
 .part-h h2{margin:0;display:flex;align-items:center;gap:10px}
+.how .act{margin:12px 0 4px}
 .btn.primary{background:var(--green);color:var(--surface);border:1px solid var(--green)}
 /* Singles divisions table */
 .divs{width:100%;max-width:760px;border-collapse:collapse;margin:10px 0 8px;font-size:15px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
@@ -41,7 +42,7 @@ main .wrap{padding-block:28px 56px}
 
 <main>
   <div class="wrap">
-    <section class="part" aria-labelledby="h-league"><div class="part-h"><h2 id="h-league"></h2><span id="reg"></span></div><ul class="how" id="how"></ul></section>
+    <section class="part" aria-labelledby="h-league"><div class="part-h"><h2 id="h-league"></h2></div><ul class="how" id="how"></ul></section>
   </div>
 </main>
 <script src="../data/league.js"></script>
@@ -57,13 +58,15 @@ main .wrap{padding-block:28px 56px}
       return '<a href="'+u+'">'+txt+'</a>';
     });
   }
-  function item(h){ return '<li><b>'+esc(h.title)+'</b><p>'+linkify(h.text)+'</p></li>'; }
+  function item(h, reg){
+    return '<li><b>'+esc(h.title)+'</b><p>'+linkify(h.text)+'</p>'+
+      (reg ? '<p class="act"><a class="btn primary" href="../'+esc(reg[1])+'">'+esc(reg[0])+'</a></p>' : '')+'</li>';
+  }
   // The Team | Singles switch in the League row picks which overview shows (#team, #singles; Team by default)
   function show(){
     var key = location.hash==="#singles" ? "singles" : "team", O = (L.overview||{})[key] || {};
     $("h-league").textContent = O.name;
-    $("reg").innerHTML = O.register ? '<a class="btn primary" href="../'+esc(O.register[1])+'">'+esc(O.register[0])+'</a>' : '';
-    $("how").innerHTML = (O.items||[]).map(item).join("");
+    $("how").innerHTML = (O.items||[]).map(function(h){ return item(h, h.title==="How to join" ? O.register : null); }).join("");
     $("sr-title").textContent = O.name+" overview";
     document.title = O.name+" · GNDA";
     if(window.GNDA && GNDA.setSub) GNDA.setSub(key==="singles" ? "s-overview" : "overview");
