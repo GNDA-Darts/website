@@ -6,15 +6,17 @@ window.GNDA_LEAGUE = {
 
   // ---------- Overview ----------
   // One overview per league, chosen with the Team | Singles switch. Both use the same headings in the same order.
-  // How to join comes first; the register button appears at the end of it (not in the heading), so people read it before registering.
+  // How to join comes first; the register button appears at the end of it (not in the heading), so people read it before registering;
+  // joinNote goes under the button.
   // Links: write [link text](page) — e.g. [Venues page](venues/index.html) — and it becomes a link.
   overview: {
     team: {
       name: "Team league",
       register: ["Register a team", "league/register/index.html"],
+      joinNote: "Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!",
       items: [
         { title: "How to join",
-          text: "Captains are responsible for registering the team. The team session fee is $20 per player and must be paid at the time of registration. The captain is also responsible for confirming that their home bar is available to host them before completing the registration. Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!" },
+          text: "Captains are responsible for registering the team. The team session fee is $20 per player and must be paid at the time of registration. The captain is also responsible for confirming that their home bar is available to host them before completing the registration." },
         { title: "When and where",
           text: "Wednesdays at 7:30 pm. Each team picks a home bar and plays every other team in its division twice: once at home and once away. See the [Venues page](venues/index.html) for league bars." },
         { title: "Format",
@@ -28,9 +30,10 @@ window.GNDA_LEAGUE = {
     singles: {
       name: "Singles league",
       register: ["Register", "league/register/singles/index.html"],
+      joinNote: "Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!",
       items: [
         { title: "How to join",
-          text: "Players are responsible for registering themselves. The buy-in is $50 per player and must be paid at the time of registration. When you register, you tell us which afternoons and evenings usually work for you; you get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar. Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!" },
+          text: "Players are responsible for registering themselves. The buy-in is $50 per player and must be paid at the time of registration. When you register, you tell us which afternoons and evenings usually work for you; you get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." },
         { title: "When and where",
           text: "Any day, at any GNDA bar: you and your opponent pick the time and place. Matches can be played in any order, as long as all of them are finished by the session deadline." },
         { title: "Format",
