@@ -63,8 +63,8 @@ window.GNDA_LEAGUE = {
     ]},
     { title: "Standings and playoffs", items: [
       "Division 1 is ranked by match wins; Divisions 2 and 3 by total legs won. Ties are broken by season three-dart average (3DA).",
-      "The top four in each group go to the playoffs.",
-      "Playoff format: to be decided."
+      "The top four in each group go to the playoffs: 1st plays 4th and 2nd plays 3rd. The winners play the final; the losers play for 3rd.",
+      "Every playoff match is best of 9 legs in Division 1, best of 5 in Division 2 and best of 3 in Division 3."
     ]}
   ],
   singlesPrizes: "Prizes go to the top three in each group. The amounts depend on the number of players in the group and are announced once groups are set.",
