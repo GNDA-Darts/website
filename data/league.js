@@ -34,7 +34,7 @@ window.GNDA_LEAGUE = {
         { title: "When and where",
           text: "Any day, at any GNDA bar: you and your opponent pick the time and place. Matches can be played in any order, as long as all of them are finished by the session deadline." },
         { title: "Format",
-          text: "One-on-one 501, scored in DartConnect. Division 1 plays first to 11 legs; Division 2 plays 11 legs, and Division 3 plays 9 legs. Rankings determined by match wins for Division 1 and total legs won in Divisions 2 and 3. Details are in the [rules](league/singles/rules/index.html)." },
+          text: "One-on-one 501, scored in DartConnect. Division 1 plays first to 11 legs; Division 2 plays 11 legs, and Division 3 plays 9 legs. Rankings determined by match wins for Division 1 and total legs won in Divisions 2 and 3, with ties broken by three-dart average. Details are in the [rules](league/singles/rules/index.html)." },
         { title: "Divisions and groups",
           text: "Three divisions, placed by DartConnect 501 average. Each division is split into groups of up to 8 of similar overall strength, and you play everyone in your group once (7 matches in a group of 8). The top four in each group go to the playoffs, and prizes go to the top three; the amounts depend on the number of players." },
         { title: "Sessions",
@@ -45,9 +45,9 @@ window.GNDA_LEAGUE = {
 
   // Singles rules page
   singlesDivisions: [
-    { division: "Division 1", match: "First to 11 legs.", ranked: "Match wins" },
-    { division: "Division 2", match: "Best of 11 legs. All 11 are played.", ranked: "Total legs won" },
-    { division: "Division 3", match: "Best of 9 legs. All 9 are played.", ranked: "Total legs won" }
+    { division: "Division 1", match: "First to 11 legs.", ranked: "Match wins, then 3DA" },
+    { division: "Division 2", match: "Best of 11 legs. All 11 are played.", ranked: "Total legs won, then 3DA" },
+    { division: "Division 3", match: "Best of 9 legs. All 9 are played.", ranked: "Total legs won, then 3DA" }
   ],
 
   // Singles rules page. Items marked "To be decided" are placeholders until the board settles them.
@@ -62,9 +62,9 @@ window.GNDA_LEAGUE = {
       "Matches not played by the deadline: to be decided."
     ]},
     { title: "Standings and playoffs", items: [
-      "Division 1 is ranked by match wins; Divisions 2 and 3 by total legs won.",
-      "The top four in each group go to the playoffs. Players tied for 4th play a tiebreaker to decide who advances: best of 5 legs in Division 1, best of 3 legs in Divisions 2 and 3.",
-      "Playoff format and seeding ties: to be decided."
+      "Division 1 is ranked by match wins; Divisions 2 and 3 by total legs won. Ties are broken by season three-dart average (3DA).",
+      "The top four in each group go to the playoffs.",
+      "Playoff format: to be decided."
     ]}
   ],
   singlesPrizes: "Prizes go to the top three in each group. The amounts depend on the number of players in the group and are announced once groups are set.",
