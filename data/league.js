@@ -21,7 +21,7 @@ window.GNDA_LEAGUE = {
         { title: "Sessions",
           text: "Three a year: Fall (September–November), Winter (January–March) and Summer (May–July)." },
         { title: "How to join",
-          text: "Captains are responsible for [registering the team](league/register/index.html). The team session fee is $20 per player and must be paid at the time of registration. The captain is also responsible for confirming that their home bar is available to host them before completing the registration." }
+          text: "Captains are responsible for [registering the team](league/register/index.html). The team session fee is $20 per player and must be paid at the time of registration. The captain is also responsible for confirming that their home bar is available to host them before completing the registration. Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!" }
       ]
     },
     singles: {
@@ -37,7 +37,7 @@ window.GNDA_LEAGUE = {
         { title: "Sessions",
           text: "Three a year: two in the first half of the year, then a summer break, and one in the fall. Dates to be announced." },
         { title: "How to join",
-          text: "Players are responsible for [registering themselves](league/register/singles/index.html). The buy-in is $50 per player and must be paid at the time of registration. When you register, you tell us which afternoons and evenings usually work for you; you get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." }
+          text: "Players are responsible for [registering themselves](league/register/singles/index.html). The buy-in is $50 per player and must be paid at the time of registration. When you register, you tell us which afternoons and evenings usually work for you; you get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar. Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!" }
       ]
     }
   },
