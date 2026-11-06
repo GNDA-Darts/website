@@ -1,6 +1,6 @@
 // GNDA site header and footer, shared by every page.
 // To add or rename a menu item, edit MENU below; every page picks it up.
-// League pages also get a second row of links (LEAGUE below), on wider screens only; phones list them in the Menu.
+// League pages also get a second row: Overview, a Team | Singles switch and that league's pages (LEAGUES below), on wider screens only; phones list them in the Menu.
 //
 // Each page includes, as the first thing inside <body>:
 //   <script src="assets/site.js" data-root="" data-page="home"></script>
@@ -18,24 +18,23 @@
     ["Music City Classic", "musiccityclassic/index.html",         "mcc"],
     ["About",              "about/index.html",                    "about"]
   ];
-  // Links on every Leagues page. A plain entry is one link; a group is one league with its own pages.
-  var LEAGUE = [
-    ["Overview",    "league/index.html",                 "overview"],
-    ["Register",    "league/register/index.html",        "register"],
+  // League row: Overview, a Team | Singles switch, then the chosen league's own pages.
+  // Register isn't in the row: the league cards on the Overview, the Home announcement and the Store link to it.
+  var OVERVIEW = ["Overview", "league/index.html", "overview"];
+  var LEAGUES = [
     { label: "Team", long: "Team league", key: "team", items: [
       ["Standings",   "league/stats/index.html#standings", "standings"],
       ["Players",     "league/stats/index.html#players",   "players"],
       ["Leaderboard", "league/stats/index.html#leaders",   "leaders"],
-      ["Sub list",    "league/subs/index.html",            "subs"]
+      ["Sub list",    "league/subs/index.html",            "subs"],
+      ["Rules",       "league/rules/index.html",           "rules"]
     ]},
     { label: "Singles", long: "Singles league", key: "singles", items: [
       ["Standings",   "league/singles/index.html#standings", "s-standings"],
-      ["Matches",     "league/singles/index.html#matches",   "s-matches"]
-    ]},
-    ["Rules",       "league/rules/index.html",           "rules"]
+      ["Matches",     "league/singles/index.html#matches",   "s-matches"],
+      ["Rules",       "league/singles/rules/index.html",     "s-rules"]
+    ]}
   ];
-  // MOCKUP ONLY: ?nav=b shows layout B (League row with Team league / Singles league, plus a second row); default is A (one grouped row)
-  var NAV = /[?&]nav=b\b/.test(location.search) ? "b" : "a";
   var FACEBOOK  = "https://www.facebook.com/groups/171823421880/";
   var INSTAGRAM = "https://www.instagram.com/gnda_nashvilledartleague/";
   var EMAIL     = "gndadarts@gmail.com";
@@ -50,15 +49,14 @@
   function link(m, cls){
     return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(m[1]))+'" data-sub="'+m[2]+'"'+(page==="league" && m[2]===sub?' aria-current="page"':'')+'>'+esc(m[0])+'</a>';
   }
-  function groupOf(key){ for(var i=0;i<LEAGUE.length;i++){ var g=LEAGUE[i]; if(g.items && g.items.some(function(m){return m[2]===key})) return g; } return null; }
-  function groupLink(g, cls){
-    return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(g.items[0][1]))+'" data-group="'+g.key+'"'+(page==="league" && groupOf(sub)===g?' aria-current="page"':'')+'>'+esc(g.long)+'</a>';
+  function groupOf(key){ for(var i=0;i<LEAGUES.length;i++){ if(LEAGUES[i].items.some(function(m){return m[2]===key})) return LEAGUES[i]; } return null; }
+  function groupLink(g, text, cls){
+    return '<a'+(cls?' class="'+cls+'"':'')+' href="'+esc(href(g.items[0][1]))+'" data-group="'+g.key+'"'+(page==="league" && groupOf(sub)===g?' aria-current="page"':'')+'>'+esc(text)+'</a>';
   }
 
-  // On phones the menu also lists the League links under Leagues (hidden on wider screens, which use the League row)
-  var leagueSub = '<div class="nav-sub">'+LEAGUE.map(function(m){
-      if(!m.items) return link(m);
-      return groupLink(m, "nav-grp")+'<div class="nav-sub2">'+m.items.map(function(x){return link(x)}).join("")+'</div>';
+  // On phones the menu lists the league pages under Leagues (wider screens use the League row)
+  var leagueSub = '<div class="nav-sub">'+link(OVERVIEW)+LEAGUES.map(function(g){
+      return groupLink(g, g.long, "nav-grp")+'<div class="nav-sub2">'+g.items.map(function(x){return link(x)}).join("")+'</div>';
     }).join("")+'</div>';
   var items = MENU.map(function(m){
     if(!m[1]) return '<span title="Coming soon">'+esc(m[0])+'</span>';
@@ -66,25 +64,14 @@
       (m[2]==="league" ? leagueSub : '');
   }).join("");
 
-  var subnav = '';
-  if(page==="league"){
-    if(NAV==="a"){
-      // A: one row; each league's pages sit behind a small label
-      subnav = '<nav class="subnav" aria-label="Leagues"><div class="wrap rowA">'+LEAGUE.map(function(m,i){
-        if(!m.items) return (i && LEAGUE[i-1].items ? '<span class="sep"></span>' : '')+link(m);
-        return '<span class="grp"><span class="grp-label">'+esc(m.label)+'</span>'+m.items.map(function(x){return link(x)}).join("")+'</span>';
-      }).join("")+'</div></nav>';
-    } else {
-      // B: first row picks the league; a second row lists that league's pages
-      var cur = groupOf(sub);
-      subnav = '<nav class="subnav" aria-label="Leagues"><div class="wrap">'+LEAGUE.map(function(m){
-        return m.items ? groupLink(m) : link(m);
-      }).join("")+'</div>'+
-      LEAGUE.filter(function(m){return m.items}).map(function(g){
-        return '<div class="wrap row2" data-row="'+g.key+'"'+(g===cur?'':' hidden')+'>'+g.items.map(function(x){return link(x)}).join("")+'</div>';
-      }).join("")+'</nav>';
-    }
-  }
+  var cur = groupOf(sub);
+  var subnav = page!=="league" ? '' :
+    '<nav class="subnav" aria-label="Leagues"><div class="wrap">'+link(OVERVIEW)+
+      '<span class="switch" role="group" aria-label="League">'+LEAGUES.map(function(g){ return groupLink(g, g.label); }).join("")+'</span>'+
+      LEAGUES.map(function(g){
+        return '<span class="pages" data-row="'+g.key+'"'+(g===cur?'':' hidden')+'>'+g.items.map(function(x){return link(x)}).join("")+'</span>';
+      }).join("")+
+    '</div></nav>';
 
   document.body.insertAdjacentHTML("afterbegin",
     '<header class="top"><div class="wrap">'+
@@ -124,7 +111,7 @@
     document.querySelectorAll("[data-group]").forEach(function(a){
       if(g && a.getAttribute("data-group")===g.key) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
     });
-    document.querySelectorAll(".subnav .row2").forEach(function(r){ r.hidden = !(g && r.getAttribute("data-row")===g.key); });
+    document.querySelectorAll(".subnav .pages").forEach(function(r){ r.hidden = !(g && r.getAttribute("data-row")===g.key); });
     reveal();
   };
   reveal();

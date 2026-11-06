@@ -24,10 +24,8 @@ window.GNDA_LEAGUE = {
       text: "You play each player in your group once: 7 matches in a group of 8. Play at any GNDA bar, on any day and at any time you both agree on, in any order. All matches must be finished by the session deadline. Every match is scored in DartConnect." },
     { title: "Finding a time",
       text: "When you sign up, you tell us which afternoons and evenings usually work for you. You get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." },
-    { title: "Match format", divisions: true,
-      text: "All legs are 501. Cork for the first throw, then players alternate." },
-    { title: "Playoffs and prizes",
-      text: "The top three in each group play off: 2nd against 3rd, then the winner against 1st. Prizes go to the top three in each group; the amounts depend on the number of players." },
+    { title: "Matches and prizes",
+      text: "Matches are 501: Division 1 plays first to 11 legs; Divisions 2 and 3 play best of 11 and best of 9 legs. The top three in each group go to the playoffs, and prizes go to the top three; the amounts depend on the number of players. Details are in the [singles rules](league/singles/rules/index.html)." },
     { title: "Sessions",
       text: "Three sessions a year: two in the first half of the year, then a summer break, and one in the fall. Dates to be announced." }
   ],
@@ -36,6 +34,25 @@ window.GNDA_LEAGUE = {
     { division: "Division 2", match: "Best of 11 legs. All 11 are played.", ranked: "Legs won" },
     { division: "Division 3", match: "Best of 9 legs. All 9 are played.", ranked: "Legs won" }
   ],
+
+  // Singles rules page. Items marked "To be decided" are placeholders until the board settles them.
+  singlesRules: [
+    { title: "Matches", items: [
+      "All legs are 501. Cork for the first throw, then players alternate.",
+      "Every match is scored in DartConnect, under the GNDA singles league.",
+      "Play at any GNDA bar, on any day and at any time both players agree on."
+    ]},
+    { title: "Deadline", items: [
+      "Matches can be played in any order, ahead or behind, as long as every group match is finished by the session deadline.",
+      "Matches not played by the deadline: to be decided."
+    ]},
+    { title: "Standings and playoffs", items: [
+      "Division 1 is ranked by wins, losses and ties; Divisions 2 and 3 by legs won.",
+      "Tiebreakers: to be decided.",
+      "The top three in each group play off: 2nd against 3rd, then the winner against 1st (proposed)."
+    ]}
+  ],
+  singlesPrizes: "Prizes go to the top three in each group. The amounts depend on the number of players in the group and are announced once groups are set.",
 
   // Team league: how it works
   // How it works: a heading and a paragraph each.
