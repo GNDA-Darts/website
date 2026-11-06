@@ -63,7 +63,7 @@ window.GNDA_LEAGUE = {
     ]},
     { title: "Standings and playoffs", items: [
       "Division 1 is ranked by match wins; Divisions 2 and 3 by total legs won.",
-      "The top four in each group go to the playoffs. Players tied for 4th play a tiebreaker to decide who advances.",
+      "The top four in each group go to the playoffs. Players tied for 4th play a tiebreaker to decide who advances: best of 5 legs in Division 1, best of 3 legs in Divisions 2 and 3.",
       "Playoff format and seeding ties: to be decided."
     ]}
   ],
