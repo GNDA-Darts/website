@@ -31,7 +31,7 @@ window.GNDA_LEAGUE = {
         { title: "When and where",
           text: "Any day, at any GNDA bar: you and your opponent pick the time and place. Matches can be played in any order, as long as all of them are finished by the session deadline." },
         { title: "Format",
-          text: "One-on-one 501, scored in DartConnect. Division 1 plays first to 11 legs; Divisions 2 and 3 play best of 11 and best of 9. Details are in the [rules](league/singles/rules/index.html)." },
+          text: "One-on-one 501, scored in DartConnect. Division 1 plays first to 11 legs; Division 2 plays 11 legs, and Division 3 plays 9 legs. Rankings determined by match wins for Division 1 and total legs won in Divisions 2 and 3. Details are in the [rules](league/singles/rules/index.html)." },
         { title: "Divisions and groups",
           text: "Three divisions, placed by DartConnect 501 average. Each division is split into groups of up to 8 of similar overall strength, and you play everyone in your group once (7 matches in a group of 8). The top three in each group go to the playoffs, and prizes go to the top three; the amounts depend on the number of players." },
         { title: "Sessions",
