@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>League · GNDA</title>
+<title>Leagues · GNDA</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
-<meta name="description" content="How the GNDA league works: Wednesday nights, teams and divisions, and sessions.">
+<meta name="description" content="The GNDA team league and singles league: how they work, when they play and what they cost.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
@@ -22,15 +22,39 @@ main .wrap{padding-block:32px 56px}
 .how li{padding:14px 0;border-bottom:1px solid var(--rule)}
 .how b{display:block;font:700 19px/1.15 var(--display);text-transform:uppercase;letter-spacing:.04em}
 .how p{margin:4px 0 0;color:var(--ink2);max-width:72ch}
+/* The two leagues side by side */
+.leagues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lg{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:20px 22px 22px;display:flex;flex-direction:column;min-width:0}
+.lg h2{margin:0;display:flex;align-items:center;gap:10px}
+.badge{font:700 11px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--surface);background:var(--red);border-radius:4px;padding:4px 6px}
+.when{font-weight:600;margin:6px 0 0}
+.lg ul{margin:12px 0 0;padding:0;list-style:none;color:var(--ink2)}
+.lg li{padding:6px 0;border-top:1px solid var(--rule)}
+.lg li:first-child{border-top:0}
+.lg .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:16px}
+.btn.primary{background:var(--green);color:var(--surface);border:1px solid var(--green)}
+.both{color:var(--ink2);margin:16px 0 0;max-width:72ch}
+.part{margin-top:40px}
+.part h2{margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+/* Singles divisions table */
+.divs{width:100%;max-width:760px;border-collapse:collapse;margin:10px 0 8px;font-size:15px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.divs th,.divs td{text-align:left;padding:9px 12px;border-top:1px solid var(--rule);vertical-align:top}
+.divs thead th{border-top:0;font:600 12px/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--sunk)}
+.divs td:first-child{font-weight:700;white-space:nowrap}
+@media (max-width:700px){ .leagues{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:520px){ .divs thead{display:none} .divs tr{display:block;border-top:1px solid var(--rule);padding:8px 12px} .divs tr:first-child{border-top:0} .divs td{display:block;border:0;padding:2px 0} }
 </style>
 </head>
 <body>
 <script src="../assets/site.js" data-root="../" data-page="league" data-sub="overview"></script>
-<h1 class="sr">League overview</h1>
+<h1 class="sr">Leagues overview</h1>
 
 <main>
   <div class="wrap">
-    <ul class="how" id="how"></ul>
+    <div class="leagues" id="leagues"></div>
+    <p class="both" id="both"></p>
+    <section class="part" aria-labelledby="h-team"><h2 id="h-team">Team league</h2><ul class="how" id="how"></ul></section>
+    <section class="part" aria-labelledby="h-singles"><h2 id="h-singles">Singles league</h2><ul class="how" id="singles"></ul></section>
   </div>
 </main>
 <script src="../data/league.js"></script>
@@ -46,7 +70,19 @@ main .wrap{padding-block:32px 56px}
       return '<a href="'+u+'">'+txt+'</a>';
     });
   }
-  $("how").innerHTML = (L.howItWorks||[]).map(function(h){return '<li><b>'+esc(h.title)+'</b><p>'+linkify(h.text)+'</p></li>'}).join("");
+  function item(h){
+    var t = h.divisions ? '<table class="divs"><thead><tr><th>Division</th><th>Match</th><th>Standings by</th></tr></thead><tbody>'+
+      (L.singlesDivisions||[]).map(function(d){return '<tr><td>'+esc(d.division)+'</td><td>'+esc(d.match)+'</td><td>'+esc(d.ranked)+'</td></tr>'}).join("")+'</tbody></table>' : '';
+    return '<li><b>'+esc(h.title)+'</b>'+t+'<p>'+linkify(h.text)+'</p></li>';
+  }
+  $("leagues").innerHTML = (L.leagues||[]).map(function(g){
+    return '<article class="lg"><h2>'+esc(g.name)+(g.badge?' <span class="badge">'+esc(g.badge)+'</span>':'')+'</h2>'+
+      '<p class="when">'+esc(g.when)+'</p><ul>'+g.facts.map(function(f){return '<li>'+esc(f)+'</li>'}).join("")+'</ul>'+
+      '<div class="acts">'+g.buttons.map(function(b,i){return '<a class="btn '+(i?'ghost':'primary')+'" href="../'+esc(b[1])+'">'+esc(b[0])+'</a>'}).join("")+'</div></article>';
+  }).join("");
+  $("both").innerHTML = linkify(L.both||"");
+  $("how").innerHTML = (L.howItWorks||[]).map(item).join("");
+  $("singles").innerHTML = (L.singlesHow||[]).map(item).join("");
 })();
 </script>
 </body>

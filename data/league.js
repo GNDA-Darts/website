@@ -5,6 +5,39 @@
 window.GNDA_LEAGUE = {
 
   // ---------- Overview ----------
+  // The two leagues, side by side at the top of the page. Links are written from the site's top folder.
+  leagues: [
+    { name: "Team league", when: "Wednesdays at 7:30 pm",
+      facts: ["Teams of 4 to 6 players", "Divisions of similarly skilled teams", "$20 per player, per session", "Fall, Winter and Summer sessions"],
+      buttons: [["Register a team", "league/register/index.html"], ["Standings", "league/stats/index.html#standings"]] },
+    { name: "Singles league", badge: "New", when: "Any day, at any GNDA bar",
+      facts: ["One-on-one 501", "3 divisions, set by DartConnect average", "Groups of up to 8: play everyone once, then playoffs", "$50 buy-in; prizes depend on the number of players"],
+      buttons: [["Sign up", "league/register/singles/index.html"], ["Standings", "league/singles/index.html#standings"]] }
+  ],
+  both: "Both leagues are for GNDA members (membership is $20 a year; see the [Store](store/index.html)). You can play in both.",
+
+  // Singles league: how it works (shown under the Team league's items)
+  singlesHow: [
+    { title: "Divisions and groups",
+      text: "Players are placed in one of three divisions by their DartConnect 501 average, then split into groups of up to 8 of similar overall strength. Division sizes are set after signups close, so every group is full or close to it." },
+    { title: "Playing your matches",
+      text: "You play each player in your group once: 7 matches in a group of 8. Play at any GNDA bar, on any day and at any time you both agree on, in any order. All matches must be finished by the session deadline. Every match is scored in DartConnect." },
+    { title: "Finding a time",
+      text: "When you sign up, you tell us which afternoons and evenings usually work for you. You get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar." },
+    { title: "Match format", divisions: true,
+      text: "All legs are 501. Cork for the first throw, then players alternate." },
+    { title: "Playoffs and prizes",
+      text: "The top three in each group play off: 2nd against 3rd, then the winner against 1st. Prizes go to the top three in each group; the amounts depend on the number of players." },
+    { title: "Sessions",
+      text: "Three sessions a year: two in the first half of the year, then a summer break, and one in the fall. Dates to be announced." }
+  ],
+  singlesDivisions: [
+    { division: "Division 1", match: "First to 11 legs. Ends at 11 wins or 20 legs played (10–10 is a tie).", ranked: "Wins, losses and ties" },
+    { division: "Division 2", match: "Best of 11 legs. All 11 are played.", ranked: "Legs won" },
+    { division: "Division 3", match: "Best of 9 legs. All 9 are played.", ranked: "Legs won" }
+  ],
+
+  // Team league: how it works
   // How it works: a heading and a paragraph each.
   // Links: write [link text](page) — e.g. [Venues page](venues/index.html) — and it becomes a link.
   howItWorks: [

@@ -47,6 +47,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .subnav a{flex:none;padding:7px 10px;border-radius:6px;font:600 15px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink2);transition:background-color .15s,color .15s}
 .subnav a:hover,.subnav a:focus-visible{background:var(--surface);color:var(--ink)}
 .subnav a[aria-current="page"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+/* Layout A: each league's links behind a small label */
+.subnav .grp{flex:none;display:flex;align-items:center;gap:0;margin-left:6px;padding-left:8px;border-left:1px solid var(--rule)}
+.subnav .rowA{gap:0}
+.subnav .rowA a{padding-inline:8px}
+.subnav .sep{flex:none;width:1px;align-self:stretch;margin:2px 6px;background:var(--rule)}
+.subnav .grp-label{font:700 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-right:4px}
+/* Layout B: a second row for the chosen league's pages */
+.subnav .row2[hidden]{display:none}
+.subnav .row2{border-top:1px solid var(--rule);padding-block:5px}
+.subnav .row2 a{font-size:14px;padding:6px 10px}
 
 /* Footer */
 footer{border-top:1px solid var(--head-edge);background:var(--head)}
@@ -91,5 +101,6 @@ footer a{color:var(--head-ink);font-weight:600}
   .nav-sub{display:flex;flex-direction:column;padding:0 0 6px 24px}
   .nav .nav-sub a{padding:10px 12px;font-size:16px;border-top:0;color:var(--head-ink2);opacity:.85}
   .nav .nav-sub a[aria-current="page"]{color:var(--head-ink);opacity:1;background:var(--head-shade)}
+  .nav-sub2{display:flex;flex-direction:column;padding-left:20px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
