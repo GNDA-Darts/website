@@ -14,7 +14,7 @@ window.GNDA_LEAGUE = {
       register: ["Register a team", "league/register/index.html"],
       items: [
         { title: "How to join",
-          text: "Captains are responsible for [registering the team](league/register/index.html). The team session fee is $20 per player and must be paid at the time of registration. The captain is also responsible for confirming that their home bar is available to host them before completing the registration. Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!" },
+          text: "Captains are responsible for registering the team. The team session fee is $20 per player and must be paid at the time of registration. The captain is also responsible for confirming that their home bar is available to host them before completing the registration. Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!" },
         { title: "When and where",
           text: "Wednesdays at 7:30 pm. Each team picks a home bar and plays every other team in its division twice: once at home and once away. See the [Venues page](venues/index.html) for league bars." },
         { title: "Format",
@@ -30,7 +30,7 @@ window.GNDA_LEAGUE = {
       register: ["Register", "league/register/singles/index.html"],
       items: [
         { title: "How to join",
-          text: "Players are responsible for [registering themselves](league/register/singles/index.html). The buy-in is $50 per player and must be paid at the time of registration. When you register, you tell us which afternoons and evenings usually work for you; you get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar. Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!" },
+          text: "Players are responsible for registering themselves. The buy-in is $50 per player and must be paid at the time of registration. When you register, you tell us which afternoons and evenings usually work for you; you get a suggested schedule showing when you and each opponent are usually free, and each session starts with a mixer where players put their dates on the calendar. Note: All players must have an active GNDA membership to participate. Not an active member? Join [here](store/index.html)!" },
         { title: "When and where",
           text: "Any day, at any GNDA bar: you and your opponent pick the time and place. Matches can be played in any order, as long as all of them are finished by the session deadline." },
         { title: "Format",
