@@ -44,9 +44,9 @@ window.GNDA_LEAGUE = {
 
   // Singles rules page
   singlesDivisions: [
-    { division: "Division 1", match: "First to 11 legs. Ends at 11 wins or 20 legs played (10–10 is a tie).", ranked: "Wins, losses and ties" },
-    { division: "Division 2", match: "Best of 11 legs. All 11 are played.", ranked: "Legs won" },
-    { division: "Division 3", match: "Best of 9 legs. All 9 are played.", ranked: "Legs won" }
+    { division: "Division 1", match: "First to 11 legs.", ranked: "Match wins" },
+    { division: "Division 2", match: "Best of 11 legs. All 11 are played.", ranked: "Total legs won" },
+    { division: "Division 3", match: "Best of 9 legs. All 9 are played.", ranked: "Total legs won" }
   ],
 
   // Singles rules page. Items marked "To be decided" are placeholders until the board settles them.
@@ -61,7 +61,7 @@ window.GNDA_LEAGUE = {
       "Matches not played by the deadline: to be decided."
     ]},
     { title: "Standings and playoffs", items: [
-      "Division 1 is ranked by wins, losses and ties; Divisions 2 and 3 by legs won.",
+      "Division 1 is ranked by match wins; Divisions 2 and 3 by total legs won.",
       "Tiebreakers: to be decided.",
       "The top three in each group play off: 2nd against 3rd, then the winner against 1st (proposed)."
     ]}
