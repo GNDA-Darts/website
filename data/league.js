@@ -33,7 +33,7 @@ window.GNDA_LEAGUE = {
         { title: "Format",
           text: "One-on-one 501, scored in DartConnect. Division 1 plays first to 11 legs; Division 2 plays 11 legs, and Division 3 plays 9 legs. Rankings determined by match wins for Division 1 and total legs won in Divisions 2 and 3. Details are in the [rules](league/singles/rules/index.html)." },
         { title: "Divisions and groups",
-          text: "Three divisions, placed by DartConnect 501 average. Each division is split into groups of up to 8 of similar overall strength, and you play everyone in your group once (7 matches in a group of 8). The top three in each group go to the playoffs, and prizes go to the top three; the amounts depend on the number of players." },
+          text: "Three divisions, placed by DartConnect 501 average. Each division is split into groups of up to 8 of similar overall strength, and you play everyone in your group once (7 matches in a group of 8). The top four in each group go to the playoffs, and prizes go to the top three; the amounts depend on the number of players." },
         { title: "Sessions",
           text: "Three a year: two in the first half of the year, then a summer break, and one in the fall. Dates to be announced." },
         { title: "How to join",
@@ -62,8 +62,8 @@ window.GNDA_LEAGUE = {
     ]},
     { title: "Standings and playoffs", items: [
       "Division 1 is ranked by match wins; Divisions 2 and 3 by total legs won.",
-      "Tiebreakers: to be decided.",
-      "The top three in each group play off: 2nd against 3rd, then the winner against 1st (proposed)."
+      "The top four in each group go to the playoffs. Players tied for 4th play a tiebreaker to decide who advances.",
+      "Playoff format and seeding ties: to be decided."
     ]}
   ],
   singlesPrizes: "Prizes go to the top three in each group. The amounts depend on the number of players in the group and are announced once groups are set.",
