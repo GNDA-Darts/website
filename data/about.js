@@ -27,9 +27,12 @@ window.GNDA_ABOUT = {
     "The by-laws and rules can be changed by a two-thirds vote of the board or the membership, with 15 days' written notice to team captains."
   ],
 
+  // "Submit an agenda item" button under Board meetings and elections.
+  agenda: { link: "about/agenda/index.html", linkText: "Submit an agenda item" },
+
   // Contact form. Paste the form's web address into link; until then it shows as "coming soon".
   contact: {
-    text: "Questions, agenda items for the next board meeting, hosting the league at your bar, or sponsorships: send them to the board.",
+    text: "Questions, hosting the league at your bar, or sponsorships: send them to the board.",
     link: "",
     linkText: "Contact the board"
   },

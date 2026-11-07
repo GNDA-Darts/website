@@ -77,10 +77,12 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--red)}
     <p class="lead">Loading…</p>
   </div>
 </main>
+<script src="../../data/forms.js"></script>
 <script src="../../data/register.js"></script>
 <script>
 (function(){
-  var C = window.GNDA_REGISTER || {}, app = document.getElementById("app");
+  var C = window.GNDA_REGISTER || {}, F = window.GNDA_FORMS || {}, app = document.getElementById("app");
+  C.endpoint = C.endpoint || F.endpoint;
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
   function money(n){ n=Math.round(n*100)/100; return "$"+(n%1 ? n.toFixed(2) : String(n)); }
   function get(params){

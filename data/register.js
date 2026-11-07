@@ -1,7 +1,6 @@
 // Register page settings.
 //
-// endpoint: the web app address of the GNDA Sheet's Apps Script (Deploy → Manage deployments → Web app URL,
-// ending in /exec). Blank = the Register page says online registration isn't available.
+// endpoint: leave blank to use the address in data/forms.js (the same web app serves every form).
 //
 // Everything else (open or closed, session, price per player, roster size, divisions, note) is set by the
 // board in the Sheet's Settings tab ("Registration ..." rows) and read live by the page.

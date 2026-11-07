@@ -27,6 +27,8 @@ main .wrap{padding-block:32px 56px}
 .cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px 48px;align-items:start;margin-top:44px}
 .gov{margin:0;padding-left:18px;color:var(--ink2);line-height:1.6;max-width:68ch}
 .gov li+li{margin-top:8px}
+.agenda{margin:20px 0 0}
+.agenda:empty{display:none}
 .side{display:grid;gap:36px;min-width:0}
 
 .list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
@@ -61,6 +63,7 @@ h3.minor{margin:20px 0 8px;font-size:16px}
       <section aria-labelledby="gov-h">
         <h2 id="gov-h">Board meetings and elections</h2>
         <ul class="gov" id="gov"></ul>
+        <p class="agenda" id="agenda"></p>
       </section>
 
       <div class="side">
@@ -99,6 +102,8 @@ h3.minor{margin:20px 0 8px;font-size:16px}
   }).join("") || '<li><p class="empty">Board list coming soon.</p></li>';
 
   $("gov").innerHTML = (A.governance||[]).map(function(g){return "<li>"+esc(g)+"</li>"}).join("");
+
+  if (A.agenda && A.agenda.link) $("agenda").innerHTML = '<a class="btn primary" href="'+esc(link(A.agenda.link))+'">'+esc(A.agenda.linkText||"Submit an agenda item")+'</a>';
 
   var c = A.contact || {};
   $("contact-text").textContent = c.text || "";
