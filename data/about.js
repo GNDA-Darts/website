@@ -40,7 +40,7 @@ window.GNDA_ABOUT = {
   // Rules and other documents. link: a PDF in this site's files/ folder, or a web address.
   documents: [
     { title: "Rules & By-Laws", note: "League rules, board responsibilities and venue requirements",
-      link: "https://www.nashvilledartleague.com/_files/ugd/1fd038_74e6ead834ee4e92b06ab5025bbbd54a.pdf" }
+      link: "files/GNDA_Bylaws.pdf" }
   ],
 
   // Board meeting minutes, newest first.

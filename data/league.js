@@ -101,7 +101,7 @@ window.GNDA_LEAGUE = {
   // Key rules: a short summary of the player-facing rules in the Rules & By-Laws.
   // The PDF is the official version. One card per group; one line per rule.
   // Links: write [link text](web address) and it becomes a link.
-  keyRulesNote: "A summary of the rules players run into most. The full [Rules & By-Laws](https://www.nashvilledartleague.com/_files/ugd/1fd038_74e6ead834ee4e92b06ab5025bbbd54a.pdf) (PDF) are the official version.",
+  keyRulesNote: "A summary of the rules players run into most. The full [Rules & By-Laws](files/GNDA_Bylaws.pdf) (PDF) are the official version.",
   keyRules: [
     { title: "Match night", items: [
       "The first event has a 15-minute grace period. No more than 5 minutes should pass between games.",
