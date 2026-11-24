@@ -23,9 +23,6 @@ main .wrap{padding-block:28px 56px}
 .how b{display:block;font:700 19px/1.15 var(--display);text-transform:uppercase;letter-spacing:.04em}
 .how p{margin:4px 0 0;color:var(--ink2);max-width:72ch}
 .part + .part{margin-top:44px}
-/* League heading with its registration button on the right */
-.part-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
-.part-h h2{margin:0;display:flex;align-items:center;gap:10px}
 .how .act{margin:12px 0 4px}
 .how .jnote{margin-top:10px;font-size:14px}
 .btn.primary{background:var(--green);color:var(--surface);border:1px solid var(--green)}
@@ -43,7 +40,7 @@ main .wrap{padding-block:28px 56px}
 
 <main>
   <div class="wrap">
-    <section class="part" aria-labelledby="h-league"><div class="part-h"><h2 id="h-league"></h2></div><ul class="how" id="how"></ul></section>
+    <section class="part" aria-labelledby="sr-title"><ul class="how" id="how"></ul></section>
   </div>
 </main>
 <script src="../data/league.js"></script>
@@ -65,10 +62,9 @@ main .wrap{padding-block:28px 56px}
       (join && O.register ? '<p class="act"><a class="btn primary" href="../'+esc(O.register[1])+'">'+esc(O.register[0])+'</a></p>' : '')+
       (join && O.joinNote ? '<p class="jnote">'+linkify(O.joinNote)+'</p>' : '')+'</li>';
   }
-  // The Team | Singles switch in the League row picks which overview shows (#team, #singles; Team by default)
+  // The league switch in the header (site.js) picks which overview shows (#team, #singles; Team by default)
   function show(){
     var key = location.hash==="#singles" ? "singles" : "team", O = (L.overview||{})[key] || {};
-    $("h-league").textContent = O.name;
     $("how").innerHTML = (O.items||[]).map(function(h){ return item(h, O); }).join("");
     $("sr-title").textContent = O.name+" overview";
     document.title = O.name+" · GNDA";
