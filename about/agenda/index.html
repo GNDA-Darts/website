@@ -80,7 +80,7 @@ input:focus-visible,textarea:focus-visible,.btn:focus-visible{outline:2px solid 
   var when = nextMeeting(today);
 
   var intro = '<p class="lead">Have something you\'d like the board to discuss? Submit it here for the board meeting on <strong>'+esc(nice(when.meeting))+' at 7:30 pm</strong>.</p>'+
-    '<p class="note">Items received by '+esc(nice(when.cutoff))+' go on that meeting\'s agenda; later items go to the following month. Board meetings are open to the public.</p>';
+    '<p class="note">Items received by '+esc(nice(when.cutoff))+' go on that meeting\'s agenda; later items go to the following month. Board meetings are open to members in good standing.</p>';
 
   if(!F.endpoint){
     app.innerHTML = intro + '<div class="card"><p class="lead">Online submission isn\'t available yet. Email your item to <a href="mailto:'+esc(CONTACT)+'">'+esc(CONTACT)+'</a>.</p></div>';
@@ -143,7 +143,7 @@ input:focus-visible,textarea:focus-visible,.btn:focus-visible{outline:2px solid 
         var meet = res.meeting || when.meeting, present = h.value === "present";
         app.innerHTML = '<div class="done"><h2>Thanks, it\'s in</h2>'+
           '<p>Your item has been sent to the board for the meeting on <strong>'+esc(nice(meet))+' at 7:30 pm</strong>.</p>'+
-          '<p>'+(present ? "You're welcome to attend and present it; meetings are open to the public."
+          '<p>'+(present ? "You're welcome to attend and present it; meetings are open to members in good standing."
                          : "The board will discuss it and let you know the outcome by email.")+'</p>'+
           '<a class="btn ghost" href="../index.html">About the board</a></div>';
         window.scrollTo(0,0);

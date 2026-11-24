@@ -20,10 +20,10 @@ window.GNDA_ABOUT = {
 
   // Board meetings and elections: a summary of the by-laws. One line per point.
   governance: [
-    "The board has nine members, elected by the membership to one-year terms. There are no term limits.",
-    "Any member in good standing can be nominated by another member. Nominations go to the Secretary by the last Wednesday of August.",
+    "The board has nine members, elected by the membership for a one-year term that starts at the October board meeting. The board chooses its own officers. There are no term limits.",
+    "Any member in good standing can be nominated by a member in good standing. Nominations go to the Secretary by the last Wednesday of August.",
     "Elections are held the third Wednesday of September by secret ballot. Every member in good standing can vote.",
-    "The board meets the third Monday of every month at 7:30 pm. Board meetings are open to the public.",
+    "The board meets at least once a month, currently the third Monday at 7:30 pm. Board meetings are open to members in good standing.",
     "The by-laws and rules can be changed by a two-thirds vote of the board or the membership, with 15 days' written notice to team captains."
   ],
 

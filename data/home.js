@@ -31,7 +31,7 @@ window.GNDA_HOME = {
   //         more: [ "Registration opens June 1.", ["Friday: doubles", "Saturday: singles"] ]
   events: [
     { repeat: "third Monday", time: "7:30 pm", title: "Board meeting",
-      details: "Board meetings are open to the public and held the third Monday of every month. Have something you'd like the board to discuss?",
+      details: "Board meetings are held the third Monday of every month and are open to members in good standing. Have something you'd like the board to discuss?",
       link: "about/agenda/index.html", linkText: "Submit an agenda item" },
     { date: "2026-10-24", title: "A Killer Night: GNDA Halloween Party", time: "7:00 pm", place: "New venue TBA",
       details: "A killer blind draw: draw your partner and hope for the best. Costume contest, $10 per entry with 5 free Triple Shot tickets. Beer goggles contest. The GNDA Triple Shot will be there." },
