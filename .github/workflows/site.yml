@@ -1,19 +1,17 @@
 name: Update website
 
-# Every hour: read the Sheet's published tabs, update data/sheet.js if anything changed, publish the site.
-# Also runs on every push to main, and on demand: Actions → Update website → Run workflow.
+# Every hour: read the Sheet's published tabs and commit data/sheet.js if anything changed.
+# Also runs on demand: Actions → Update website → Run workflow.
+# Publishing is done by GitHub Pages itself (Settings → Pages → Deploy from a branch: main, / root),
+# which republishes the site after every commit, including this job's.
 
 on:
   schedule:
     - cron: '23 * * * *'
   workflow_dispatch:
-  push:
-    branches: [main]
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: website
@@ -62,25 +60,3 @@ jobs:
           SITE_URL: https://gnda-darts.github.io/website/
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: node .github/scripts/notify.mjs
-
-  deploy:
-    needs: sync
-    if: needs.sync.outputs.changed == 'true' || github.event_name != 'schedule'
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-
-      - name: Collect the site files
-        run: rsync -a --exclude '.git' --exclude '.github' --exclude '.gitignore' --exclude '_site' ./ _site/
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-      - id: deployment
-        uses: actions/deploy-pages@v4
